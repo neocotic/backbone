@@ -47,7 +47,7 @@ requests!
 
 ## License
 
-Copyright (c) 2015 Alasdair Mercer
+Copyright (c) 2015 Alasdair Mercer  
 Copyright (c) 2010-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 
 See [LICENSE.md](https://github.com/neocotic/hipbone/blob/master/LICENSE.md) for more information on our MIT license.
