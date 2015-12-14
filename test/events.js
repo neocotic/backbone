@@ -1,10 +1,10 @@
 (function() {
 
-  module("Backbone.Events");
+  module("Hipbone.Events");
 
   test("on and trigger", 2, function() {
     var obj = { counter: 0 };
-    _.extend(obj,Backbone.Events);
+    _.extend(obj,Hipbone.Events);
     obj.on('event', function() { obj.counter += 1; });
     obj.trigger('event');
     equal(obj.counter,1,'counter should be incremented.');
@@ -17,7 +17,7 @@
 
   test("binding and triggering multiple events", 4, function() {
     var obj = { counter: 0 };
-    _.extend(obj, Backbone.Events);
+    _.extend(obj, Hipbone.Events);
 
     obj.on('a b c', function() { obj.counter += 1; });
 
@@ -37,7 +37,7 @@
 
   test("binding and triggering with event maps", function() {
     var obj = { counter: 0 };
-    _.extend(obj, Backbone.Events);
+    _.extend(obj, Hipbone.Events);
 
     var increment = function() {
       this.counter += 1;
@@ -68,7 +68,7 @@
 
   test("binding and triggering multiple event names with event maps", function() {
     var obj = { counter: 0 };
-    _.extend(obj, Backbone.Events);
+    _.extend(obj, Hipbone.Events);
 
     var increment = function() {
       this.counter += 1;
@@ -97,7 +97,7 @@
   test("binding and trigger with event maps context", 2, function() {
     var obj = { counter: 0 };
     var context = {};
-    _.extend(obj, Backbone.Events);
+    _.extend(obj, Hipbone.Events);
 
     obj.on({
         a: function() {
@@ -113,8 +113,8 @@
   });
 
   test("listenTo and stopListening", 1, function() {
-    var a = _.extend({}, Backbone.Events);
-    var b = _.extend({}, Backbone.Events);
+    var a = _.extend({}, Hipbone.Events);
+    var b = _.extend({}, Hipbone.Events);
     a.listenTo(b, 'all', function(){ ok(true); });
     b.trigger('anything');
     a.listenTo(b, 'all', function(){ ok(false); });
@@ -123,8 +123,8 @@
   });
 
   test("listenTo and stopListening with event maps", 4, function() {
-    var a = _.extend({}, Backbone.Events);
-    var b = _.extend({}, Backbone.Events);
+    var a = _.extend({}, Hipbone.Events);
+    var b = _.extend({}, Hipbone.Events);
     var cb = function(){ ok(true); };
     a.listenTo(b, {event: cb});
     b.trigger('event');
@@ -137,8 +137,8 @@
   });
 
   test("stopListening with omitted args", 2, function () {
-    var a = _.extend({}, Backbone.Events);
-    var b = _.extend({}, Backbone.Events);
+    var a = _.extend({}, Hipbone.Events);
+    var b = _.extend({}, Hipbone.Events);
     var cb = function () { ok(true); };
     a.listenTo(b, 'event', cb);
     b.on('event', cb);
@@ -155,7 +155,7 @@
   test("listenToOnce", 2, function() {
     // Same as the previous test, but we use once rather than having to explicitly unbind
     var obj = { counterA: 0, counterB: 0 };
-    _.extend(obj, Backbone.Events);
+    _.extend(obj, Hipbone.Events);
     var incrA = function(){ obj.counterA += 1; obj.trigger('event'); };
     var incrB = function(){ obj.counterB += 1; };
     obj.listenToOnce(obj, 'event', incrA);
@@ -166,8 +166,8 @@
   });
 
   test("listenToOnce and stopListening", 1, function() {
-    var a = _.extend({}, Backbone.Events);
-    var b = _.extend({}, Backbone.Events);
+    var a = _.extend({}, Hipbone.Events);
+    var b = _.extend({}, Hipbone.Events);
     a.listenToOnce(b, 'all', function() { ok(true); });
     b.trigger('anything');
     b.trigger('anything');
@@ -177,8 +177,8 @@
   });
 
   test("listenTo, listenToOnce and stopListening", 1, function() {
-    var a = _.extend({}, Backbone.Events);
-    var b = _.extend({}, Backbone.Events);
+    var a = _.extend({}, Hipbone.Events);
+    var b = _.extend({}, Hipbone.Events);
     a.listenToOnce(b, 'all', function() { ok(true); });
     b.trigger('anything');
     b.trigger('anything');
@@ -188,8 +188,8 @@
   });
 
   test("listenTo and stopListening with event maps", 1, function() {
-    var a = _.extend({}, Backbone.Events);
-    var b = _.extend({}, Backbone.Events);
+    var a = _.extend({}, Hipbone.Events);
+    var b = _.extend({}, Hipbone.Events);
     a.listenTo(b, {change: function(){ ok(true); }});
     b.trigger('change');
     a.listenTo(b, {change: function(){ ok(false); }});
@@ -198,13 +198,13 @@
   });
 
   test("listenTo yourself", 1, function(){
-    var e = _.extend({}, Backbone.Events);
+    var e = _.extend({}, Hipbone.Events);
     e.listenTo(e, "foo", function(){ ok(true); });
     e.trigger("foo");
   });
 
   test("listenTo yourself cleans yourself up with stopListening", 1, function(){
-    var e = _.extend({}, Backbone.Events);
+    var e = _.extend({}, Hipbone.Events);
     e.listenTo(e, "foo", function(){ ok(true); });
     e.trigger("foo");
     e.stopListening();
@@ -212,8 +212,8 @@
   });
 
   test("stopListening cleans up references", 12, function() {
-    var a = _.extend({}, Backbone.Events);
-    var b = _.extend({}, Backbone.Events);
+    var a = _.extend({}, Hipbone.Events);
+    var b = _.extend({}, Hipbone.Events);
     var fn = function() {};
     b.on('event', fn);
     a.listenTo(b, 'event', fn).stopListening();
@@ -235,8 +235,8 @@
   });
 
   test("stopListening cleans up references from listenToOnce", 12, function() {
-    var a = _.extend({}, Backbone.Events);
-    var b = _.extend({}, Backbone.Events);
+    var a = _.extend({}, Hipbone.Events);
+    var b = _.extend({}, Hipbone.Events);
     var fn = function() {};
     b.on('event', fn);
     a.listenToOnce(b, 'event', fn).stopListening();
@@ -258,8 +258,8 @@
   });
 
   test("listenTo and off cleaning up references", 8, function() {
-    var a = _.extend({}, Backbone.Events);
-    var b = _.extend({}, Backbone.Events);
+    var a = _.extend({}, Hipbone.Events);
+    var b = _.extend({}, Hipbone.Events);
     var fn = function() {};
     a.listenTo(b, 'event', fn);
     b.off();
@@ -280,8 +280,8 @@
   });
 
   test("listenTo and stopListening cleaning up references", 2, function() {
-    var a = _.extend({}, Backbone.Events);
-    var b = _.extend({}, Backbone.Events);
+    var a = _.extend({}, Hipbone.Events);
+    var b = _.extend({}, Hipbone.Events);
     a.listenTo(b, 'all', function(){ ok(true); });
     b.trigger('anything');
     a.listenTo(b, 'other', function(){ ok(false); });
@@ -291,16 +291,16 @@
   });
 
   test("listenToOnce without context cleans up references after the event has fired", 2, function() {
-    var a = _.extend({}, Backbone.Events);
-    var b = _.extend({}, Backbone.Events);
+    var a = _.extend({}, Hipbone.Events);
+    var b = _.extend({}, Hipbone.Events);
     a.listenToOnce(b, 'all', function(){ ok(true); });
     b.trigger('anything');
     equal(_.size(a._listeningTo), 0);
   });
 
   test("listenToOnce with event maps cleans up references", 2, function() {
-    var a = _.extend({}, Backbone.Events);
-    var b = _.extend({}, Backbone.Events);
+    var a = _.extend({}, Hipbone.Events);
+    var b = _.extend({}, Hipbone.Events);
     a.listenToOnce(b, {
       one: function() { ok(true); },
       two: function() { ok(false); }
@@ -310,8 +310,8 @@
   });
 
   test("listenToOnce with event maps binds the correct `this`", 1, function() {
-    var a = _.extend({}, Backbone.Events);
-    var b = _.extend({}, Backbone.Events);
+    var a = _.extend({}, Hipbone.Events);
+    var b = _.extend({}, Hipbone.Events);
     a.listenToOnce(b, {
       one: function() { ok(this === a); },
       two: function() { ok(false); }
@@ -320,7 +320,7 @@
   });
 
   test("listenTo with empty callback doesn't throw an error", 1, function(){
-    var e = _.extend({}, Backbone.Events);
+    var e = _.extend({}, Hipbone.Events);
     e.listenTo(e, "foo", null);
     e.trigger("foo");
     ok(true);
@@ -328,7 +328,7 @@
 
   test("trigger all for each event", 3, function() {
     var a, b, obj = { counter: 0 };
-    _.extend(obj, Backbone.Events);
+    _.extend(obj, Hipbone.Events);
     obj.on('all', function(event) {
       obj.counter++;
       if (event == 'a') a = true;
@@ -342,7 +342,7 @@
 
   test("on, then unbind all functions", 1, function() {
     var obj = { counter: 0 };
-    _.extend(obj,Backbone.Events);
+    _.extend(obj,Hipbone.Events);
     var callback = function() { obj.counter += 1; };
     obj.on('event', callback);
     obj.trigger('event');
@@ -353,7 +353,7 @@
 
   test("bind two callbacks, unbind only one", 2, function() {
     var obj = { counterA: 0, counterB: 0 };
-    _.extend(obj,Backbone.Events);
+    _.extend(obj,Hipbone.Events);
     var callback = function() { obj.counterA += 1; };
     obj.on('event', callback);
     obj.on('event', function() { obj.counterB += 1; });
@@ -366,7 +366,7 @@
 
   test("unbind a callback in the midst of it firing", 1, function() {
     var obj = {counter: 0};
-    _.extend(obj, Backbone.Events);
+    _.extend(obj, Hipbone.Events);
     var callback = function() {
       obj.counter += 1;
       obj.off('event', callback);
@@ -380,7 +380,7 @@
 
   test("two binds that unbind themeselves", 2, function() {
     var obj = { counterA: 0, counterB: 0 };
-    _.extend(obj,Backbone.Events);
+    _.extend(obj,Hipbone.Events);
     var incrA = function(){ obj.counterA += 1; obj.off('event', incrA); };
     var incrB = function(){ obj.counterB += 1; obj.off('event', incrB); };
     obj.on('event', incrA);
@@ -400,14 +400,14 @@
       ok(true, '`this` was bound to the callback');
     };
 
-    var obj = _.extend({},Backbone.Events);
+    var obj = _.extend({},Hipbone.Events);
     obj.on('event', function () { this.assertTrue(); }, (new TestClass));
     obj.trigger('event');
   });
 
   test("nested trigger with unbind", 1, function () {
     var obj = { counter: 0 };
-    _.extend(obj, Backbone.Events);
+    _.extend(obj, Hipbone.Events);
     var incr1 = function(){ obj.counter += 1; obj.off('event', incr1); obj.trigger('event'); };
     var incr2 = function(){ obj.counter += 1; };
     obj.on('event', incr1);
@@ -417,7 +417,7 @@
   });
 
   test("callback list is not altered during trigger", 2, function () {
-    var counter = 0, obj = _.extend({}, Backbone.Events);
+    var counter = 0, obj = _.extend({}, Hipbone.Events);
     var incr = function(){ counter++; };
     var incrOn = function(){ obj.on('event all', incr); };
     var incrOff = function(){ obj.off('event all', incr); };
@@ -429,9 +429,9 @@
     equal(counter, 2, 'off does not alter callback list');
   });
 
-  test("#1282 - 'all' callback list is retrieved after each event.", 1, function() {
+  test("jashkenas/backbone#1282 - 'all' callback list is retrieved after each event.", 1, function() {
     var counter = 0;
-    var obj = _.extend({}, Backbone.Events);
+    var obj = _.extend({}, Hipbone.Events);
     var incr = function(){ counter++; };
     obj.on('x', function() {
       obj.on('y', incr).on('all', incr);
@@ -441,18 +441,18 @@
   });
 
   test("if no callback is provided, `on` is a noop", 0, function() {
-    _.extend({}, Backbone.Events).on('test').trigger('test');
+    _.extend({}, Hipbone.Events).on('test').trigger('test');
   });
 
   test("if callback is truthy but not a function, `on` should throw an error just like jQuery", 1, function() {
-    var view = _.extend({}, Backbone.Events).on('test', 'noop');
+    var view = _.extend({}, Hipbone.Events).on('test', 'noop');
     throws(function() {
       view.trigger('test');
     });
   });
 
   test("remove all events for a specific context", 4, function() {
-    var obj = _.extend({}, Backbone.Events);
+    var obj = _.extend({}, Hipbone.Events);
     obj.on('x y all', function() { ok(true); });
     obj.on('x y all', function() { ok(false); }, obj);
     obj.off(null, null, obj);
@@ -460,7 +460,7 @@
   });
 
   test("remove all events for a specific callback", 4, function() {
-    var obj = _.extend({}, Backbone.Events);
+    var obj = _.extend({}, Hipbone.Events);
     var success = function() { ok(true); };
     var fail = function() { ok(false); };
     obj.on('x y all', success);
@@ -469,8 +469,8 @@
     obj.trigger('x y');
   });
 
-  test("#1310 - off does not skip consecutive events", 0, function() {
-    var obj = _.extend({}, Backbone.Events);
+  test("jashkenas/backbone#1310 - off does not skip consecutive events", 0, function() {
+    var obj = _.extend({}, Hipbone.Events);
     obj.on('event', function() { ok(false); }, obj);
     obj.on('event', function() { ok(false); }, obj);
     obj.off(null, null, obj);
@@ -480,7 +480,7 @@
   test("once", 2, function() {
     // Same as the previous test, but we use once rather than having to explicitly unbind
     var obj = { counterA: 0, counterB: 0 };
-    _.extend(obj, Backbone.Events);
+    _.extend(obj, Hipbone.Events);
     var incrA = function(){ obj.counterA += 1; obj.trigger('event'); };
     var incrB = function(){ obj.counterB += 1; };
     obj.once('event', incrA);
@@ -493,8 +493,8 @@
   test("once variant one", 3, function() {
     var f = function(){ ok(true); };
 
-    var a = _.extend({}, Backbone.Events).once('event', f);
-    var b = _.extend({}, Backbone.Events).on('event', f);
+    var a = _.extend({}, Hipbone.Events).once('event', f);
+    var b = _.extend({}, Hipbone.Events).on('event', f);
 
     a.trigger('event');
 
@@ -504,7 +504,7 @@
 
   test("once variant two", 3, function() {
     var f = function(){ ok(true); };
-    var obj = _.extend({}, Backbone.Events);
+    var obj = _.extend({}, Hipbone.Events);
 
     obj
       .once('event', f)
@@ -515,7 +515,7 @@
 
   test("once with off", 0, function() {
     var f = function(){ ok(true); };
-    var obj = _.extend({}, Backbone.Events);
+    var obj = _.extend({}, Hipbone.Events);
 
     obj.once('event', f);
     obj.off('event', f);
@@ -524,7 +524,7 @@
 
   test("once with event maps", function() {
     var obj = { counter: 0 };
-    _.extend(obj, Backbone.Events);
+    _.extend(obj, Hipbone.Events);
 
     var increment = function() {
       this.counter += 1;
@@ -551,32 +551,32 @@
 
   test("once with off only by context", 0, function() {
     var context = {};
-    var obj = _.extend({}, Backbone.Events);
+    var obj = _.extend({}, Hipbone.Events);
     obj.once('event', function(){ ok(false); }, context);
     obj.off(null, null, context);
     obj.trigger('event');
   });
 
-  test("Backbone object inherits Events", function() {
-    ok(Backbone.on === Backbone.Events.on);
+  test("Hipbone object inherits Events", function() {
+    ok(Hipbone.on === Hipbone.Events.on);
   });
 
   asyncTest("once with asynchronous events", 1, function() {
     var func = _.debounce(function() { ok(true); start(); }, 50);
-    var obj = _.extend({}, Backbone.Events).once('async', func);
+    var obj = _.extend({}, Hipbone.Events).once('async', func);
 
     obj.trigger('async');
     obj.trigger('async');
   });
 
   test("once with multiple events.", 2, function() {
-    var obj = _.extend({}, Backbone.Events);
+    var obj = _.extend({}, Hipbone.Events);
     obj.once('x y', function() { ok(true); });
     obj.trigger('x y');
   });
 
   test("Off during iteration with once.", 2, function() {
-    var obj = _.extend({}, Backbone.Events);
+    var obj = _.extend({}, Hipbone.Events);
     var f = function(){ this.off('event', f); };
     obj.on('event', f);
     obj.once('event', function(){});
@@ -587,25 +587,25 @@
   });
 
   test("`once` on `all` should work as expected", 1, function() {
-    Backbone.once('all', function() {
+    Hipbone.once('all', function() {
       ok(true);
-      Backbone.trigger('all');
+      Hipbone.trigger('all');
     });
-    Backbone.trigger('all');
+    Hipbone.trigger('all');
   });
 
   test("once without a callback is a noop", 0, function() {
-    _.extend({}, Backbone.Events).once('event').trigger('event');
+    _.extend({}, Hipbone.Events).once('event').trigger('event');
   });
 
   test("listenToOnce without a callback is a noop", 0, function() {
-    var obj = _.extend({}, Backbone.Events);
+    var obj = _.extend({}, Hipbone.Events);
     obj.listenToOnce(obj, 'event').trigger('event');
   });
 
   test("event functions are chainable", function() {
-    var obj = _.extend({}, Backbone.Events);
-    var obj2 = _.extend({}, Backbone.Events);
+    var obj = _.extend({}, Hipbone.Events);
+    var obj2 = _.extend({}, Hipbone.Events);
     var fn = function() {};
     equal(obj, obj.trigger('noeventssetyet'));
     equal(obj, obj.off('noeventssetyet'));
@@ -620,9 +620,9 @@
     equal(obj, obj.stopListening());
   });
 
-  test("#3448 - listenToOnce with space-separated events", 2, function() {
-    var one = _.extend({}, Backbone.Events);
-    var two = _.extend({}, Backbone.Events);
+  test("jashkenas/backbone#3448 - listenToOnce with space-separated events", 2, function() {
+    var one = _.extend({}, Hipbone.Events);
+    var two = _.extend({}, Hipbone.Events);
     var count = 1;
     one.listenToOnce(two, 'x y', function(n) { ok(n === count++); });
     two.trigger('x', 1);

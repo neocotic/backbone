@@ -1,12 +1,12 @@
 (function() {
 
-  module("Backbone.noConflict");
+  module("Hipbone.noConflict");
 
   test('noConflict', 2, function() {
-    var noconflictBackbone = Backbone.noConflict();
-    equal(window.Backbone, undefined, 'Returned window.Backbone');
-    window.Backbone = noconflictBackbone;
-    equal(window.Backbone, noconflictBackbone, 'Backbone is still pointing to the original Backbone');
+    var noconflictHipbone = Hipbone.noConflict();
+    equal(window.Hipbone, undefined, 'Returned window.Hipbone');
+    window.Hipbone = noconflictHipbone;
+    equal(window.Hipbone, noconflictHipbone, 'Hipbone is still pointing to the original Hipbone');
   });
 
 })();

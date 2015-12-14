@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>backbone.js</title>
+  <title>hipbone.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -15,7 +15,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>backbone.js</h1>
+                  <h1>hipbone.js</h1>
               </div>
           </li>
         
@@ -27,7 +27,7 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <pre><code>Backbone.js <span class="hljs-number">1.2</span><span class="hljs-number">.3</span>
+              <pre><code>Hipbone.js <span class="hljs-number">1.2</span><span class="hljs-number">.3</span>
 </code></pre>
             </div>
             
@@ -40,10 +40,13 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <pre><code>(c) <span class="hljs-number">2010</span>-<span class="hljs-number">2015</span> Jeremy Ashkenas, DocumentCloud and Investigative Reporters &amp; Editors
+              <pre><code>(c) <span class="hljs-number">2015</span> Alasdair Mercer
+Hipbone may be freely distributed under the MIT license.
+Based on Backbone.js <span class="hljs-number">1.2</span><span class="hljs-number">.3</span>
+(c) <span class="hljs-number">2010</span><span class="hljs-number">-2015</span> Jeremy Ashkenas, DocumentCloud and Investigative Reporters &amp; Editors
 Backbone may be freely distributed under the MIT license.
 For all details and documentation:
-http:<span class="hljs-comment">//backbonejs.org</span>
+https:<span class="hljs-comment">//github.com/neocotic/hipbone</span>
 </code></pre>
             </div>
             
@@ -76,7 +79,7 @@ We use <code>self</code> instead of <code>window</code> for <code>WebWorker</cod
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>Set up Backbone appropriately for the environment. Start with AMD.</p>
+              <p>Set up Hipbone appropriately for the environment. Start with AMD.</p>
 
             </div>
             
@@ -93,11 +96,11 @@ We use <code>self</code> instead of <code>window</code> for <code>WebWorker</cod
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <p>Export global even in AMD case in case this script is loaded with
-others that may still expect a global Backbone.</p>
+others that may still expect a global Hipbone.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      root.Backbone = factory(root, exports, _, $);
+            <div class="content"><div class='highlight'><pre>      root.Hipbone = factory(root, exports, _, $);
     });</pre></div></div>
             
         </li>
@@ -132,10 +135,10 @@ others that may still expect a global Backbone.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>  } <span class="hljs-keyword">else</span> {
-    root.Backbone = factory(root, {}, root._, (root.jQuery || root.Zepto || root.ender || root.$));
+    root.Hipbone = factory(root, {}, root._, (root.jQuery || root.Zepto || root.ender || root.$));
   }
 
-}(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root, Backbone, _, $</span>) </span>{</pre></div></div>
+}(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root, Hipbone, _, $</span>) </span>{</pre></div></div>
             
         </li>
         
@@ -171,12 +174,12 @@ others that may still expect a global Backbone.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
-              <p>Save the previous value of the <code>Backbone</code> variable, so that it can be
+              <p>Save the previous value of the <code>Hipbone</code> variable, so that it can be
 restored later on, if <code>noConflict</code> is used.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> previousBackbone = root.Backbone;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> previousHipbone = root.Hipbone;</pre></div></div>
             
         </li>
         
@@ -206,7 +209,7 @@ restored later on, if <code>noConflict</code> is used.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  Backbone.VERSION = <span class="hljs-string">'1.2.3'</span>;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  Hipbone.VERSION = <span class="hljs-string">'1.2.3'</span>;</pre></div></div>
             
         </li>
         
@@ -217,12 +220,12 @@ restored later on, if <code>noConflict</code> is used.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
-              <p>For Backbone’s purposes, jQuery, Zepto, Ender, or My Library (kidding) owns
+              <p>For Hipbone’s purposes, jQuery, Zepto, Ender, or My Library (kidding) owns
 the <code>$</code> variable.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  Backbone.$ = $;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  Hipbone.$ = $;</pre></div></div>
             
         </li>
         
@@ -233,13 +236,13 @@ the <code>$</code> variable.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
-              <p>Runs Backbone.js in <em>noConflict</em> mode, returning the <code>Backbone</code> variable
-to its previous owner. Returns a reference to this Backbone object.</p>
+              <p>Runs Hipbone.js in <em>noConflict</em> mode, returning the <code>Hipbone</code> variable
+to its previous owner. Returns a reference to this Hipbone object.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  Backbone.noConflict = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    root.Backbone = previousBackbone;
+            <div class="content"><div class='highlight'><pre>  Hipbone.noConflict = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    root.Hipbone = previousHipbone;
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
   };</pre></div></div>
             
@@ -258,7 +261,7 @@ set a <code>X-Http-Method-Override</code> header.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  Backbone.emulateHTTP = <span class="hljs-literal">false</span>;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  Hipbone.emulateHTTP = <span class="hljs-literal">false</span>;</pre></div></div>
             
         </li>
         
@@ -276,7 +279,7 @@ form param named <code>model</code>.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  Backbone.emulateJSON = <span class="hljs-literal">false</span>;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  Hipbone.emulateJSON = <span class="hljs-literal">false</span>;</pre></div></div>
             
         </li>
         
@@ -287,7 +290,7 @@ form param named <code>model</code>.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
-              <p>Proxy Backbone class methods to Underscore functions, wrapping the model’s
+              <p>Proxy Hipbone class methods to Underscore functions, wrapping the model’s
 <code>attributes</code> object or collection’s <code>models</code> array behind the scenes.</p>
 <p>collection.filter(function(model) { return model.get(‘age’) &gt; 10 });
 collection.each(this.addView);</p>
@@ -357,7 +360,7 @@ collection.each(this.addView);</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
-              <h2 id="backbone-events">Backbone.Events</h2>
+              <h2 id="hipbone-events">Hipbone.Events</h2>
 
             </div>
             
@@ -387,13 +390,13 @@ a custom event channel. You may bind a callback to an event with <code>on</code>
 remove with <code>off</code>; <code>trigger</code>-ing an event fires all callbacks in
 succession.</p>
 <pre><code><span class="hljs-keyword">var</span> object = {};
-_.extend(object, Backbone.Events);
+_.extend(object, Hipbone.Events);
 object.on(<span class="hljs-string">'expand'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{ alert(<span class="hljs-string">'expanded'</span>); });
 object.trigger(<span class="hljs-string">'expand'</span>);
 </code></pre>
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> Events = Backbone.Events = {};</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> Events = Hipbone.Events = {};</pre></div></div>
             
         </li>
         
@@ -951,12 +954,12 @@ receive the true name of the event as the first argument).</p>
               </div>
               <p>A difficult-to-believe, but optimized internal dispatch function for
 triggering events. Tries to keep the usual cases speedy (most internal
-Backbone events have 3 arguments).</p>
+Hipbone events have 3 arguments).</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> triggerEvents = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">events, args</span>) </span>{
-    <span class="hljs-keyword">var</span> ev, i = -<span class="hljs-number">1</span>, l = events.length, a1 = args[<span class="hljs-number">0</span>], a2 = args[<span class="hljs-number">1</span>], a3 = args[<span class="hljs-number">2</span>];
+    <span class="hljs-keyword">var</span> ev, i = <span class="hljs-number">-1</span>, l = events.length, a1 = args[<span class="hljs-number">0</span>], a2 = args[<span class="hljs-number">1</span>], a3 = args[<span class="hljs-number">2</span>];
     <span class="hljs-keyword">switch</span> (args.length) {
       <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>: <span class="hljs-keyword">while</span> (++i &lt; l) (ev = events[i]).callback.call(ev.ctx); <span class="hljs-keyword">return</span>;
       <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>: <span class="hljs-keyword">while</span> (++i &lt; l) (ev = events[i]).callback.call(ev.ctx, a1); <span class="hljs-keyword">return</span>;
@@ -991,12 +994,12 @@ Backbone events have 3 arguments).</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-50">&#182;</a>
               </div>
-              <p>Allow the <code>Backbone</code> object to serve as a global event bus, for folks who
+              <p>Allow the <code>Hipbone</code> object to serve as a global event bus, for folks who
 want global “pubsub” in a convenient place.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  _.extend(Backbone, Events);</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  _.extend(Hipbone, Events);</pre></div></div>
             
         </li>
         
@@ -1007,7 +1010,7 @@ want global “pubsub” in a convenient place.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-51">&#182;</a>
               </div>
-              <h2 id="backbone-model">Backbone.Model</h2>
+              <h2 id="hipbone-model">Hipbone.Model</h2>
 
             </div>
             
@@ -1032,7 +1035,7 @@ want global “pubsub” in a convenient place.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-53">&#182;</a>
               </div>
-              <p>Backbone <strong>Models</strong> are the basic data object in the framework –
+              <p>Hipbone <strong>Models</strong> are the basic data object in the framework –
 frequently representing a row in a table in a database on your server.
 A discrete chunk of data and a bunch of useful, related methods for
 performing computations and transformations on that data.</p>
@@ -1053,7 +1056,7 @@ is automatically generated and assigned for you.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> Model = Backbone.Model = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">attributes, options</span>) </span>{
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> Model = Hipbone.Model = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">attributes, options</span>) </span>{
     <span class="hljs-keyword">var</span> attrs = attributes || {};
     options || (options = {});
     <span class="hljs-keyword">this</span>.cid = _.uniqueId(<span class="hljs-keyword">this</span>.cidPrefix);
@@ -1185,13 +1188,13 @@ initialization logic.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-62">&#182;</a>
               </div>
-              <p>Proxy <code>Backbone.sync</code> by default – but override this if you need
+              <p>Proxy <code>Hipbone.sync</code> by default – but override this if you need
 custom syncing semantics for <em>this</em> particular model.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>    sync: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-      <span class="hljs-keyword">return</span> Backbone.sync.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>);
+      <span class="hljs-keyword">return</span> Hipbone.sync.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>);
     },</pre></div></div>
             
         </li>
@@ -1777,7 +1780,7 @@ If <code>wait: true</code> is passed, waits for the server to respond before rem
                 <a class="pilcrow" href="#section-90">&#182;</a>
               </div>
               <p>Default URL for the model’s representation on the server – if you’re
-using Backbone’s restful methods, override this to change the endpoint
+using Hipbone’s restful methods, override this to change the endpoint
 that will be called.</p>
 
             </div>
@@ -1927,7 +1930,7 @@ number of arguments they take.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-98">&#182;</a>
               </div>
-              <h2 id="backbone-collection">Backbone.Collection</h2>
+              <h2 id="hipbone-collection">Hipbone.Collection</h2>
 
             </div>
             
@@ -1952,7 +1955,7 @@ number of arguments they take.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-100">&#182;</a>
               </div>
-              <p>If models tend to represent a single row of data, a Backbone Collection is
+              <p>If models tend to represent a single row of data, a Hipbone Collection is
 more analogous to a table full of data … or a small slice or page of that
 table, or a collection of rows that belong together for a particular reason
 – all of the messages in this particular folder, all of the documents
@@ -1976,7 +1979,7 @@ its models in sort order, as they’re added and removed.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> Collection = Backbone.Collection = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">models, options</span>) </span>{
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> Collection = Hipbone.Collection = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">models, options</span>) </span>{
     options || (options = {});
     <span class="hljs-keyword">if</span> (options.model) <span class="hljs-keyword">this</span>.model = options.model;
     <span class="hljs-keyword">if</span> (options.comparator !== <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>) <span class="hljs-keyword">this</span>.comparator = options.comparator;
@@ -2047,7 +2050,7 @@ its models in sort order, as they’re added and removed.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-105">&#182;</a>
               </div>
-              <p>The default model for a collection is just a <strong>Backbone.Model</strong>.
+              <p>The default model for a collection is just a <strong>Hipbone.Model</strong>.
 This should be overridden in most cases.</p>
 
             </div>
@@ -2097,12 +2100,12 @@ models’ attributes.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-108">&#182;</a>
               </div>
-              <p>Proxy <code>Backbone.sync</code> by default.</p>
+              <p>Proxy <code>Hipbone.sync</code> by default.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>    sync: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-      <span class="hljs-keyword">return</span> Backbone.sync.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>);
+      <span class="hljs-keyword">return</span> Hipbone.sync.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>);
     },</pre></div></div>
             
         </li>
@@ -2114,7 +2117,7 @@ models’ attributes.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-109">&#182;</a>
               </div>
-              <p>Add a model, or list of models to the set. <code>models</code> may be Backbone
+              <p>Add a model, or list of models to the set. <code>models</code> may be Hipbone
 Models or raw JavaScript objects to be converted to Models, or any
 combination of the two.</p>
 
@@ -2908,7 +2911,7 @@ in other collections are ignored.</p>
                 <a class="pilcrow" href="#section-145">&#182;</a>
               </div>
               <p>Underscore methods that we want to implement on the Collection.
-90% of the core usefulness of Backbone Collections is actually implemented
+90% of the core usefulness of Hipbone Collections is actually implemented
 right here:</p>
 
             </div>
@@ -2946,7 +2949,7 @@ right here:</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-147">&#182;</a>
               </div>
-              <h2 id="backbone-view">Backbone.View</h2>
+              <h2 id="hipbone-view">Hipbone.View</h2>
 
             </div>
             
@@ -2971,7 +2974,7 @@ right here:</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-149">&#182;</a>
               </div>
-              <p>Backbone Views are almost more convention than they are actual code. A View
+              <p>Hipbone Views are almost more convention than they are actual code. A View
 is simply a JavaScript object that represents a logical chunk of UI in the
 DOM. This might be a single item, an entire list, a sidebar or panel, or
 even the surrounding frame which wraps your whole app. Defining a chunk of
@@ -2990,12 +2993,12 @@ react to specific changes in the state of your models.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-150">&#182;</a>
               </div>
-              <p>Creating a Backbone.View creates its initial element outside of the DOM,
+              <p>Creating a Hipbone.View creates its initial element outside of the DOM,
 if an existing element is not provided…</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> View = Backbone.View = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">options</span>) </span>{
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> View = Hipbone.View = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">options</span>) </span>{
     <span class="hljs-keyword">this</span>.cid = _.uniqueId(<span class="hljs-string">'view'</span>);
     _.extend(<span class="hljs-keyword">this</span>, _.pick(options, viewOptions));
     <span class="hljs-keyword">this</span>._ensureElement();
@@ -3041,7 +3044,7 @@ if an existing element is not provided…</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-153">&#182;</a>
               </div>
-              <p>Set up all inheritable <strong>Backbone.View</strong> properties and methods.</p>
+              <p>Set up all inheritable <strong>Hipbone.View</strong> properties and methods.</p>
 
             </div>
             
@@ -3125,7 +3128,7 @@ convention is for <strong>render</strong> to always return <code>this</code>.</p
                 <a class="pilcrow" href="#section-158">&#182;</a>
               </div>
               <p>Remove this view by taking the element out of the DOM, and removing any
-applicable Backbone.Events listeners.</p>
+applicable Hipbone.Events listeners.</p>
 
             </div>
             
@@ -3193,7 +3196,7 @@ alternative DOM manipulation API and are only required to set the
             </div>
             
             <div class="content"><div class='highlight'><pre>    _setElement: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">el</span>) </span>{
-      <span class="hljs-keyword">this</span>.$el = el <span class="hljs-keyword">instanceof</span> Backbone.$ ? el : Backbone.$(el);
+      <span class="hljs-keyword">this</span>.$el = el <span class="hljs-keyword">instanceof</span> Hipbone.$ ? el : Hipbone.$(el);
       <span class="hljs-keyword">this</span>.el = <span class="hljs-keyword">this</span>.$el[<span class="hljs-number">0</span>];
     },</pre></div></div>
             
@@ -3264,7 +3267,7 @@ using <code>selector</code>). This only works for delegate-able events: not <cod
               </div>
               <p>Clears all callbacks previously bound to the view by <code>delegateEvents</code>.
 You usually don’t need to use this, but may wish to if you have multiple
-Backbone views attached to the same DOM element.</p>
+Hipbone views attached to the same DOM element.</p>
 
             </div>
             
@@ -3367,7 +3370,7 @@ subclasses using an alternative DOM manipulation API.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-169">&#182;</a>
               </div>
-              <h2 id="backbone-sync">Backbone.sync</h2>
+              <h2 id="hipbone-sync">Hipbone.sync</h2>
 
             </div>
             
@@ -3392,7 +3395,7 @@ subclasses using an alternative DOM manipulation API.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-171">&#182;</a>
               </div>
-              <p>Override this function to change the manner in which Backbone persists
+              <p>Override this function to change the manner in which Hipbone persists
 models to the server. You will be passed the type of request, and the
 model in question. By default, makes a RESTful Ajax request
 to the model’s <code>url()</code>. Some possible customizations could be:</p>
@@ -3401,7 +3404,7 @@ to the model’s <code>url()</code>. Some possible customizations could be:</p>
 <li>Send up the models as XML instead of JSON.</li>
 <li>Persist models via WebSockets instead of Ajax.</li>
 </ul>
-<p>Turn on <code>Backbone.emulateHTTP</code> in order to send <code>PUT</code> and <code>DELETE</code> requests
+<p>Turn on <code>Hipbone.emulateHTTP</code> in order to send <code>PUT</code> and <code>DELETE</code> requests
 as <code>POST</code>, with a <code>_method</code> parameter containing the true HTTP method,
 as well as all requests with the body as <code>application/x-www-form-urlencoded</code>
 instead of <code>application/json</code> with the model in a param named <code>model</code>.
@@ -3410,7 +3413,7 @@ it difficult to read the body of <code>PUT</code> requests.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  Backbone.sync = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">method, model, options</span>) </span>{
+            <div class="content"><div class='highlight'><pre>  Hipbone.sync = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">method, model, options</span>) </span>{
     <span class="hljs-keyword">var</span> type = methodMap[method];</pre></div></div>
             
         </li>
@@ -3427,8 +3430,8 @@ it difficult to read the body of <code>PUT</code> requests.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>    _.defaults(options || (options = {}), {
-      emulateHTTP: Backbone.emulateHTTP,
-      emulateJSON: Backbone.emulateJSON
+      emulateHTTP: Hipbone.emulateHTTP,
+      emulateJSON: Hipbone.emulateJSON
     });</pre></div></div>
             
         </li>
@@ -3573,7 +3576,7 @@ And an <code>X-HTTP-Method-Override</code> header.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> xhr = options.xhr = Backbone.ajax(_.extend(params, options));
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> xhr = options.xhr = Hipbone.ajax(_.extend(params, options));
     model.trigger(<span class="hljs-string">'request'</span>, model, xhr, options);
     <span class="hljs-keyword">return</span> xhr;
   };</pre></div></div>
@@ -3587,7 +3590,7 @@ And an <code>X-HTTP-Method-Override</code> header.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-181">&#182;</a>
               </div>
-              <p>Map from CRUD to HTTP for our default <code>Backbone.sync</code> implementation.</p>
+              <p>Map from CRUD to HTTP for our default <code>Hipbone.sync</code> implementation.</p>
 
             </div>
             
@@ -3608,13 +3611,13 @@ And an <code>X-HTTP-Method-Override</code> header.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-182">&#182;</a>
               </div>
-              <p>Set the default implementation of <code>Backbone.ajax</code> to proxy through to <code>$</code>.
+              <p>Set the default implementation of <code>Hipbone.ajax</code> to proxy through to <code>$</code>.
 Override this if you’d like to use a different library.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  Backbone.ajax = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">return</span> Backbone.$.ajax.apply(Backbone.$, <span class="hljs-built_in">arguments</span>);
+            <div class="content"><div class='highlight'><pre>  Hipbone.ajax = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> Hipbone.$.ajax.apply(Hipbone.$, <span class="hljs-built_in">arguments</span>);
   };</pre></div></div>
             
         </li>
@@ -3626,7 +3629,7 @@ Override this if you’d like to use a different library.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-183">&#182;</a>
               </div>
-              <h2 id="backbone-router">Backbone.Router</h2>
+              <h2 id="hipbone-router">Hipbone.Router</h2>
 
             </div>
             
@@ -3656,7 +3659,7 @@ matched. Creating a new one sets its <code>routes</code> hash, if not set static
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> Router = Backbone.Router = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">options</span>) </span>{
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> Router = Hipbone.Router = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">options</span>) </span>{
     options || (options = {});
     <span class="hljs-keyword">if</span> (options.routes) <span class="hljs-keyword">this</span>.routes = options.routes;
     <span class="hljs-keyword">this</span>._bindRoutes();
@@ -3691,7 +3694,7 @@ parts of route strings.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-187">&#182;</a>
               </div>
-              <p>Set up all inheritable <strong>Backbone.Router</strong> properties and methods.</p>
+              <p>Set up all inheritable <strong>Hipbone.Router</strong> properties and methods.</p>
 
             </div>
             
@@ -3737,12 +3740,12 @@ initialization logic.</p>
       }
       <span class="hljs-keyword">if</span> (!callback) callback = <span class="hljs-keyword">this</span>[name];
       <span class="hljs-keyword">var</span> router = <span class="hljs-keyword">this</span>;
-      Backbone.history.route(route, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fragment</span>) </span>{
+      Hipbone.history.route(route, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fragment</span>) </span>{
         <span class="hljs-keyword">var</span> args = router._extractParameters(route, fragment);
         <span class="hljs-keyword">if</span> (router.execute(callback, args, name) !== <span class="hljs-literal">false</span>) {
           router.trigger.apply(router, [<span class="hljs-string">'route:'</span> + name].concat(args));
           router.trigger(<span class="hljs-string">'route'</span>, name, args);
-          Backbone.history.trigger(<span class="hljs-string">'route'</span>, router, name, args);
+          Hipbone.history.trigger(<span class="hljs-string">'route'</span>, router, name, args);
         }
       });
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
@@ -3775,12 +3778,12 @@ excellent place to do pre-route setup or post-route cleanup.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-191">&#182;</a>
               </div>
-              <p>Simple proxy to <code>Backbone.history</code> to save a fragment into the history.</p>
+              <p>Simple proxy to <code>Hipbone.history</code> to save a fragment into the history.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>    navigate: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fragment, options</span>) </span>{
-      Backbone.history.navigate(fragment, options);
+      Hipbone.history.navigate(fragment, options);
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
     },</pre></div></div>
             
@@ -3793,7 +3796,7 @@ excellent place to do pre-route setup or post-route cleanup.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-192">&#182;</a>
               </div>
-              <p>Bind all defined routes to <code>Backbone.history</code>. We have to reverse the
+              <p>Bind all defined routes to <code>Hipbone.history</code>. We have to reverse the
 order of the routes here to support behavior where the most general
 routes can be defined at the bottom of the route map.</p>
 
@@ -3880,7 +3883,7 @@ treated as <code>null</code> to normalize cross-browser behavior.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-196">&#182;</a>
               </div>
-              <h2 id="backbone-history">Backbone.History</h2>
+              <h2 id="hipbone-history">Hipbone.History</h2>
 
             </div>
             
@@ -3913,7 +3916,7 @@ falls back to polling.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> History = Backbone.History = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> History = Hipbone.History = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">this</span>.handlers = [];
     <span class="hljs-keyword">this</span>.checkUrl = _.bind(<span class="hljs-keyword">this</span>.checkUrl, <span class="hljs-keyword">this</span>);</pre></div></div>
             
@@ -4005,7 +4008,7 @@ falls back to polling.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-204">&#182;</a>
               </div>
-              <p>Set up all inheritable <strong>Backbone.History</strong> properties and methods.</p>
+              <p>Set up all inheritable <strong>Hipbone.History</strong> properties and methods.</p>
 
             </div>
             
@@ -4180,7 +4183,7 @@ an existing route, and <code>false</code> otherwise.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>    start: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">options</span>) </span>{
-      <span class="hljs-keyword">if</span> (History.started) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Backbone.history has already been started'</span>);
+      <span class="hljs-keyword">if</span> (History.started) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Hipbone.history has already been started'</span>);
       History.started = <span class="hljs-literal">true</span>;</pre></div></div>
             
         </li>
@@ -4253,7 +4256,7 @@ browser, but we’re currently in a browser that doesn’t support it…</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>._hasPushState &amp;&amp; !<span class="hljs-keyword">this</span>.atRoot()) {
-          <span class="hljs-keyword">var</span> root = <span class="hljs-keyword">this</span>.root.slice(<span class="hljs-number">0</span>, -<span class="hljs-number">1</span>) || <span class="hljs-string">'/'</span>;
+          <span class="hljs-keyword">var</span> root = <span class="hljs-keyword">this</span>.root.slice(<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>) || <span class="hljs-string">'/'</span>;
           <span class="hljs-keyword">this</span>.location.replace(root + <span class="hljs-string">'#'</span> + <span class="hljs-keyword">this</span>.getPath());</pre></div></div>
             
         </li>
@@ -4310,7 +4313,7 @@ support the <code>hashchange</code> event, HTML5 history, or the user wants
         <span class="hljs-keyword">this</span>.iframe = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'iframe'</span>);
         <span class="hljs-keyword">this</span>.iframe.src = <span class="hljs-string">'javascript:0'</span>;
         <span class="hljs-keyword">this</span>.iframe.style.display = <span class="hljs-string">'none'</span>;
-        <span class="hljs-keyword">this</span>.iframe.tabIndex = -<span class="hljs-number">1</span>;
+        <span class="hljs-keyword">this</span>.iframe.tabIndex = <span class="hljs-number">-1</span>;
         <span class="hljs-keyword">var</span> body = <span class="hljs-built_in">document</span>.body;</pre></div></div>
             
         </li>
@@ -4383,7 +4386,7 @@ support the <code>hashchange</code> event, HTML5 history, or the user wants
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-224">&#182;</a>
               </div>
-              <p>Disable Backbone.history, perhaps temporarily. Not useful in a real app,
+              <p>Disable Hipbone.history, perhaps temporarily. Not useful in a real app,
 but possibly useful for unit testing Routers.</p>
 
             </div>
@@ -4611,7 +4614,7 @@ you wish to modify the current URL without adding an entry to the history.</p>
             
             <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">var</span> root = <span class="hljs-keyword">this</span>.root;
       <span class="hljs-keyword">if</span> (fragment === <span class="hljs-string">''</span> || fragment.charAt(<span class="hljs-number">0</span>) === <span class="hljs-string">'?'</span>) {
-        root = root.slice(<span class="hljs-number">0</span>, -<span class="hljs-number">1</span>) || <span class="hljs-string">'/'</span>;
+        root = root.slice(<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>) || <span class="hljs-string">'/'</span>;
       }
       <span class="hljs-keyword">var</span> url = root + fragment;</pre></div></div>
             
@@ -4759,11 +4762,11 @@ a new one to the browser history.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-244">&#182;</a>
               </div>
-              <p>Create the default Backbone.history.</p>
+              <p>Create the default Hipbone.history.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  Backbone.history = <span class="hljs-keyword">new</span> History;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  Hipbone.history = <span class="hljs-keyword">new</span> History;</pre></div></div>
             
         </li>
         
@@ -4951,7 +4954,7 @@ later.</p>
     };
   };
 
-  <span class="hljs-keyword">return</span> Backbone;
+  <span class="hljs-keyword">return</span> Hipbone;
 
 }));</pre></div></div>
             

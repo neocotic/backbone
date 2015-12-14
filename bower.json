@@ -1,8 +1,36 @@
 {
-  "name"          : "backbone",
-  "main"          : "backbone.js",
-  "dependencies"  : {
-    "underscore"  : ">=1.7.0"
+  "name": "hipbone",
+  "description": "Fork of Backbone.js which supports and is written using ES2015 classes",
+  "keywords": [
+    "model",
+    "view",
+    "controller",
+    "router",
+    "server",
+    "client",
+    "browser",
+    "backbone"
+  ],
+  "license": "MIT",
+  "authors": [
+    "Alasdair Mercer",
+    "Jeremy Ashkenas"
+  ],
+  "main": "hipbone.js",
+  "dependencies": {
+    "underscore": ">=1.7.0"
   },
-  "ignore"        : ["docs", "examples", "test", "*.yml", "*.html", "*.ico", "*.md", "CNAME", ".*", "karma.*", "component.json", "package.json"]
+  "ignore": [
+    "docs",
+    "test",
+    "*.yml",
+    "*.md",
+    ".*",
+    "package.json"
+  ],
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ]
 }

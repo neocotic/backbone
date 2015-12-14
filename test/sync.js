@@ -1,6 +1,6 @@
 (function() {
 
-  var Library = Backbone.Collection.extend({
+  var Library = Hipbone.Collection.extend({
     url : function() { return '/library'; }
   });
   var library;
@@ -11,7 +11,7 @@
     length : 123
   };
 
-  module("Backbone.sync", {
+  module("Hipbone.sync", {
 
     setup : function() {
       library = new Library;
@@ -19,7 +19,7 @@
     },
 
     teardown: function() {
-      Backbone.emulateHTTP = false;
+      Hipbone.emulateHTTP = false;
     }
 
   });
@@ -130,7 +130,7 @@
   });
 
   test("urlError", 2, function() {
-    var model = new Backbone.Model();
+    var model = new Hipbone.Model();
     throws(function() {
       model.fetch();
     });
@@ -139,58 +139,58 @@
   });
 
   test("#1052 - `options` is optional.", 0, function() {
-    var model = new Backbone.Model();
+    var model = new Hipbone.Model();
     model.url = '/test';
-    Backbone.sync('create', model);
+    Hipbone.sync('create', model);
   });
 
-  test("Backbone.ajax", 1, function() {
-    Backbone.ajax = function(settings){
+  test("Hipbone.ajax", 1, function() {
+    Hipbone.ajax = function(settings){
       strictEqual(settings.url, '/test');
     };
-    var model = new Backbone.Model();
+    var model = new Hipbone.Model();
     model.url = '/test';
-    Backbone.sync('create', model);
+    Hipbone.sync('create', model);
   });
 
   test("Call provided error callback on error.", 1, function() {
-    var model = new Backbone.Model;
+    var model = new Hipbone.Model;
     model.url = '/test';
-    Backbone.sync('read', model, {
+    Hipbone.sync('read', model, {
       error: function() { ok(true); }
     });
     this.ajaxSettings.error();
   });
 
-  test('Use Backbone.emulateHTTP as default.', 2, function() {
-    var model = new Backbone.Model;
+  test('Use Hipbone.emulateHTTP as default.', 2, function() {
+    var model = new Hipbone.Model;
     model.url = '/test';
 
-    Backbone.emulateHTTP = true;
+    Hipbone.emulateHTTP = true;
     model.sync('create', model);
     strictEqual(this.ajaxSettings.emulateHTTP, true);
 
-    Backbone.emulateHTTP = false;
+    Hipbone.emulateHTTP = false;
     model.sync('create', model);
     strictEqual(this.ajaxSettings.emulateHTTP, false);
   });
 
-  test('Use Backbone.emulateJSON as default.', 2, function() {
-    var model = new Backbone.Model;
+  test('Use Hipbone.emulateJSON as default.', 2, function() {
+    var model = new Hipbone.Model;
     model.url = '/test';
 
-    Backbone.emulateJSON = true;
+    Hipbone.emulateJSON = true;
     model.sync('create', model);
     strictEqual(this.ajaxSettings.emulateJSON, true);
 
-    Backbone.emulateJSON = false;
+    Hipbone.emulateJSON = false;
     model.sync('create', model);
     strictEqual(this.ajaxSettings.emulateJSON, false);
   });
 
-  test("#1756 - Call user provided beforeSend function.", 4, function() {
-    Backbone.emulateHTTP = true;
-    var model = new Backbone.Model;
+  test("jashkenas/backbone#1756 - Call user provided beforeSend function.", 4, function() {
+    Hipbone.emulateHTTP = true;
+    var model = new Hipbone.Model;
     model.url = '/test';
     var xhr = {
       setRequestHeader: function(header, value) {
@@ -207,8 +207,8 @@
     strictEqual(this.ajaxSettings.beforeSend(xhr), false);
   });
 
-  test('#2928 - Pass along `textStatus` and `errorThrown`.', 2, function() {
-    var model = new Backbone.Model;
+  test('jashkenas/backbone#2928 - Pass along `textStatus` and `errorThrown`.', 2, function() {
+    var model = new Hipbone.Model;
     model.url = '/test';
     model.on('error', function(model, xhr, options) {
       strictEqual(options.textStatus, 'textStatus');

@@ -1,22 +1,23 @@
-## How to Open a Backbone.js Ticket
+# Contributing
 
-* Do not use tickets to ask for help with (debugging) your application. Ask on
-the [mailing list](https://groups.google.com/forum/#!forum/backbonejs), 
-in the IRC channel (`#documentcloud` on Freenode), or if you understand your 
-specific problem, on [StackOverflow](http://stackoverflow.com/questions/tagged/backbone.js).
+If you have any questions about [Hipbone](https://github.com/neocotic/hipbone) please feel free to
+[raise an issue](https://github.com/neocotic/hipbone/issues/new).
 
-* Before you open a ticket or send a pull request,
-[search](https://github.com/jashkenas/backbone/issues) for previous
-discussions about the same feature or issue. Add to the earlier ticket if you
-find one.
+Please [search existing issues](https://github.com/neocotic/hipbone/issues) for the same feature and/or issue before
+raising a new issue. Commenting on an existing issue is usually preferred over raising duplicate issues.
 
-* Before sending a pull request for a feature or bug fix, be sure to have
-[tests](http://backbonejs.org/test/).
+Ensure that all files confirm to the coding standards and that you update any relevant unit tests (in the `test`
+directory) and that all tests are currently passing. This can be done easily via command-line:
 
-* Use the same coding style as the rest of the
-[codebase](https://github.com/jashkenas/backbone/blob/master/backbone.js).
+``` bash
+# install/update package dependencies
+$ npm install
+# run test suite
+$ npm test
+```
 
-* In your pull request, do not add documentation or rebuild the minified
-`backbone-min.js` file. We'll do that before cutting a new release.
+The only dependency here is just [Node.js](https://nodejs.org) v4 or later. Earlier versions *will not work!*
 
-* All pull requests should be made to the `master` branch.
+Use the same coding style as the rest of the code base.
+
+All pull requests should be made to the `develop` branch.

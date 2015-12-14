@@ -1,9 +1,9 @@
 (function() {
 
-  var sync = Backbone.sync;
-  var ajax = Backbone.ajax;
-  var emulateHTTP = Backbone.emulateHTTP;
-  var emulateJSON = Backbone.emulateJSON;
+  var sync = Hipbone.sync;
+  var ajax = Hipbone.ajax;
+  var emulateHTTP = Hipbone.emulateHTTP;
+  var emulateJSON = Hipbone.emulateJSON;
   var history = window.history;
   var pushState = history.pushState;
   var replaceState = history.replaceState;
@@ -15,12 +15,12 @@
     history.pushState = history.replaceState = function(){};
 
     // Capture ajax settings for comparison.
-    Backbone.ajax = function(settings) {
+    Hipbone.ajax = function(settings) {
       env.ajaxSettings = settings;
     };
 
-    // Capture the arguments to Backbone.sync for comparison.
-    Backbone.sync = function(method, model, options) {
+    // Capture the arguments to Hipbone.sync for comparison.
+    Hipbone.sync = function(method, model, options) {
       env.syncArgs = {
         method: method,
         model: model,
@@ -32,10 +32,10 @@
   });
 
   QUnit.testDone(function() {
-    Backbone.sync = sync;
-    Backbone.ajax = ajax;
-    Backbone.emulateHTTP = emulateHTTP;
-    Backbone.emulateJSON = emulateJSON;
+    Hipbone.sync = sync;
+    Hipbone.ajax = ajax;
+    Hipbone.emulateHTTP = emulateHTTP;
+    Hipbone.emulateJSON = emulateJSON;
     history.pushState = pushState;
     history.replaceState = replaceState;
   });

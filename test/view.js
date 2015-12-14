@@ -2,14 +2,14 @@
 
   var view;
 
-  module("Backbone.View", {
+  module("Hipbone.View", {
 
     setup: function() {
       $('#qunit-fixture').append(
         '<div id="testElement"><h1>Test</h1></div>'
       );
 
-      view = new Backbone.View({
+      view = new Hipbone.View({
         id        : 'test-view',
         className : 'test-view',
         other     : 'non-special-option'
@@ -25,7 +25,7 @@
   });
 
   test("$", 2, function() {
-    var view = new Backbone.View;
+    var view = new Hipbone.View;
     view.setElement('<p><a><b>test</b></a></p>');
     var result = view.$('a b');
 
@@ -34,16 +34,16 @@
   });
 
   test("$el", 3, function() {
-    var view = new Backbone.View;
+    var view = new Hipbone.View;
     view.setElement('<p><a><b>test</b></a></p>');
     strictEqual(view.el.nodeType, 1);
 
-    ok(view.$el instanceof Backbone.$);
+    ok(view.$el instanceof Hipbone.$);
     strictEqual(view.$el[0], view.el);
   });
 
   test("initialize", 1, function() {
-    var View = Backbone.View.extend({
+    var View = Hipbone.View.extend({
       initialize: function() {
         this.one = 1;
       }
@@ -53,14 +53,14 @@
   });
 
   test("render", 1, function() {
-    var view = new Backbone.View;
+    var view = new Hipbone.View;
     equal(view.render(), view, '#render returns the view instance');
   });
 
   test("delegateEvents", 6, function() {
     var counter1 = 0, counter2 = 0;
 
-    var view = new Backbone.View({el: '#testElement'});
+    var view = new Hipbone.View({el: '#testElement'});
     view.increment = function(){ counter1++; };
     view.$el.on('click', function(){ counter2++; });
 
@@ -82,7 +82,7 @@
   });
 
   test("delegate", 3, function() {
-    var view = new Backbone.View({el: '#testElement'});
+    var view = new Hipbone.View({el: '#testElement'});
     view.delegate('click', 'h1', function() {
       ok(true);
     });
@@ -95,7 +95,7 @@
   });
 
   test("delegateEvents allows functions for callbacks", 3, function() {
-    var view = new Backbone.View({el: '<p></p>'});
+    var view = new Hipbone.View({el: '<p></p>'});
     view.counter = 0;
 
     var events = {
@@ -118,7 +118,7 @@
 
 
   test("delegateEvents ignore undefined methods", 0, function() {
-    var view = new Backbone.View({el: '<p></p>'});
+    var view = new Hipbone.View({el: '<p></p>'});
     view.delegateEvents({'click': 'undefinedMethod'});
     view.$el.trigger('click');
   });
@@ -126,7 +126,7 @@
   test("undelegateEvents", 7, function() {
     var counter1 = 0, counter2 = 0;
 
-    var view = new Backbone.View({el: '#testElement'});
+    var view = new Hipbone.View({el: '#testElement'});
     view.increment = function(){ counter1++; };
     view.$el.on('click', function(){ counter2++; });
 
@@ -151,7 +151,7 @@
   });
 
   test("undelegate", 1, function() {
-    view = new Backbone.View({el: '#testElement'});
+    view = new Hipbone.View({el: '#testElement'});
     view.delegate('click', function() { ok(false); });
     view.delegate('click', 'h1', function() { ok(false); });
 
@@ -164,7 +164,7 @@
   });
 
   test("undelegate with passed handler", 1, function() {
-    view = new Backbone.View({el: '#testElement'});
+    view = new Hipbone.View({el: '#testElement'});
     var listener = function() { ok(false); };
     view.delegate('click', listener);
     view.delegate('click', function() { ok(true); });
@@ -173,7 +173,7 @@
   });
 
   test("undelegate with selector", 2, function() {
-    view = new Backbone.View({el: '#testElement'});
+    view = new Hipbone.View({el: '#testElement'});
     view.delegate('click', function() { ok(true); });
     view.delegate('click', 'h1', function() { ok(false); });
     view.undelegate('click', 'h1');
@@ -182,7 +182,7 @@
   });
 
   test("undelegate with handler and selector", 2, function() {
-    view = new Backbone.View({el: '#testElement'});
+    view = new Hipbone.View({el: '#testElement'});
     view.delegate('click', function() { ok(true); });
     var handler = function(){ ok(false); };
     view.delegate('click', 'h1', handler);
@@ -192,7 +192,7 @@
   });
 
   test("tagName can be provided as a string", 1, function() {
-    var View = Backbone.View.extend({
+    var View = Hipbone.View.extend({
       tagName: 'span'
     });
 
@@ -200,7 +200,7 @@
   });
 
   test("tagName can be provided as a function", 1, function() {
-    var View = Backbone.View.extend({
+    var View = Hipbone.View.extend({
       tagName: function() {
         return 'p';
       }
@@ -210,7 +210,7 @@
   });
 
   test("_ensureElement with DOM node el", 1, function() {
-    var View = Backbone.View.extend({
+    var View = Hipbone.View.extend({
       el: document.body
     });
 
@@ -218,24 +218,24 @@
   });
 
   test("_ensureElement with string el", 3, function() {
-    var View = Backbone.View.extend({
+    var View = Hipbone.View.extend({
       el: "body"
     });
     strictEqual(new View().el, document.body);
 
-    View = Backbone.View.extend({
+    View = Hipbone.View.extend({
       el: "#testElement > h1"
     });
     strictEqual(new View().el, $("#testElement > h1").get(0));
 
-    View = Backbone.View.extend({
+    View = Hipbone.View.extend({
       el: "#nonexistent"
     });
     ok(!new View().el);
   });
 
   test("with className and id functions", 2, function() {
-    var View = Backbone.View.extend({
+    var View = Hipbone.View.extend({
       className: function() {
         return 'className';
       },
@@ -249,7 +249,7 @@
   });
 
   test("with attributes", 2, function() {
-    var View = Backbone.View.extend({
+    var View = Hipbone.View.extend({
       attributes: {
         id: 'id',
         'class': 'class'
@@ -261,7 +261,7 @@
   });
 
   test("with attributes as a function", 1, function() {
-    var View = Backbone.View.extend({
+    var View = Hipbone.View.extend({
       attributes: function() {
         return {'class': 'dynamic'};
       }
@@ -274,7 +274,7 @@
     var count = 0;
     var $el = $('<p></p>');
 
-    var View = Backbone.View.extend({
+    var View = Hipbone.View.extend({
       el: $el,
       events: {
         click: function() {
@@ -297,7 +297,7 @@
   });
 
   test("custom events", 2, function() {
-    var View = Backbone.View.extend({
+    var View = Hipbone.View.extend({
       el: $('body'),
       events: {
         "fake$event": function() { ok(true); }
@@ -311,21 +311,21 @@
     $('body').trigger('fake$event');
   });
 
-  test("#1048 - setElement uses provided object.", 2, function() {
+  test("jashkenas/backbone#1048 - setElement uses provided object.", 2, function() {
     var $el = $('body');
 
-    var view = new Backbone.View({el: $el});
+    var view = new Hipbone.View({el: $el});
     ok(view.$el === $el);
 
     view.setElement($el = $($el));
     ok(view.$el === $el);
   });
 
-  test("#986 - Undelegate before changing element.", 1, function() {
+  test("jashkenas/backbone#986 - Undelegate before changing element.", 1, function() {
     var button1 = $('<button></button>');
     var button2 = $('<button></button>');
 
-    var View = Backbone.View.extend({
+    var View = Hipbone.View.extend({
       events: {
         click: function(e) {
           ok(view.el === e.target);
@@ -340,8 +340,8 @@
     button2.trigger('click');
   });
 
-  test("#1172 - Clone attributes object", 2, function() {
-    var View = Backbone.View.extend({
+  test("jashkenas/backbone#1172 - Clone attributes object", 2, function() {
+    var View = Hipbone.View.extend({
       attributes: {foo: 'bar'}
     });
 
@@ -353,7 +353,7 @@
   });
 
   test("views stopListening", 0, function() {
-    var View = Backbone.View.extend({
+    var View = Hipbone.View.extend({
       initialize: function() {
         this.listenTo(this.model, 'all x', function(){ ok(false); });
         this.listenTo(this.collection, 'all x', function(){ ok(false); });
@@ -361,8 +361,8 @@
     });
 
     var view = new View({
-      model: new Backbone.Model,
-      collection: new Backbone.Collection
+      model: new Hipbone.Model,
+      collection: new Hipbone.Collection
     });
 
     view.stopListening();
@@ -371,7 +371,7 @@
   });
 
   test("Provide function for el.", 2, function() {
-    var View = Backbone.View.extend({
+    var View = Hipbone.View.extend({
       el: function() {
         return "<p><a></a></p>";
       }
@@ -385,7 +385,7 @@
   test("events passed in options", 1, function() {
     var counter = 0;
 
-    var View = Backbone.View.extend({
+    var View = Hipbone.View.extend({
       el: '#testElement',
       increment: function() {
         counter++;
@@ -403,7 +403,7 @@
   });
 
   test("remove", 2, function() {
-    var view = new Backbone.View;
+    var view = new Hipbone.View;
     document.body.appendChild(view.el);
 
     view.delegate('click', function() { ok(false); });
@@ -418,7 +418,7 @@
   });
 
   test("setElement", 3, function() {
-    var view = new Backbone.View({
+    var view = new Hipbone.View({
       events: {
         click: function() { ok(false); }
       }
